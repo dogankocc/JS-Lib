@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .parent-bg{
+    opacity: 0.46 !important;
+    background-color: rgb(33, 33, 33) !important;
+    border-color: rgb(33, 33, 33) !important;
+    height: 100%;
+    position: absolute;
+    z-index: 201;
+    width: 100%;
+    will-change: opacity;
+}
+
+.overlay {
+    align-items: center;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), z-index 1ms;
+    z-index: 201;
+}
+
+.overlay--active {
+    pointer-events: auto;
+}
+
+.dialog{
+    display: none;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transition: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 1ms;
+    width: 100%;
+    z-index: 6;
+    outline: none;
+}
+
+.dialog-active{
+    display: flex !important;
+}
+
+.dialog:not(.dialog--fulscreen){
+    max-height: 90%;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+}
+
+.dialog-title{
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.0125em;
+    padding: 16px 24px 10px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.0125em;
+    padding: 16px 24px 10px;
+    line-height: 2rem;
+    word-break: break-all;
+}
+
+.dialog-text{
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.375rem;
+    letter-spacing: 0.0071428571em;
+    padding: 0 24px 20px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.dialog-content {
+    max-width: 600px;
+    border-radius: 4px;
+    margin: 24px;
+    overflow-y: auto;
+    pointer-events: auto;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    z-index: inherit;
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    font-family: "Roboto", sans-serif;
+}
+
+.dialog-actions{
+    align-items: center;
+    display: flex;
+    padding: 12px;
+}
+
+.spacer{
+    flex-grow: 1 !important;
+}
+.dialog-btn{
+    padding: 0 8px;
+    height: 32px;
+    min-width: 64px;
+    color: #1E88E5 !important;
+    caret-color: #1E88E5 !important;
+    font-size: 0.875rem;
+    align-items: center;
+    border-radius: 4px;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 500;
+    letter-spacing: 0.0892857143em;
+    justify-content: center;
+    outline: 0;
+    position: relative;
+    text-decoration: none;
+    text-indent: 0.0892857143em;
+    text-transform: uppercase;
+    transition-duration: 0.28s;
+    transition-property: box-shadow, transform, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    /* -webkit-user-select: none; */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.container {
+    width: 100%;
+    padding: 12px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 1264px){
+    .container {
+        max-width: 1185px;
+    }
+}
+
+@media (min-width: 960px){
+    .container {
+        max-width: 900px;
+    }
+}
+
+</style>
+<body>
+    <button id="openDialog" onclick="handleOpenModal(event)">Open MOdal</button>
+    <div id="dialog" class="dialog">
+        <div class="dialog-content">  
+            <div class="dialog-title">
+                Title
+            </div>
+            <div class="dialog-text">
+                <p>Dialog Texy Content</p>
+            </div>
+            <div class="dialog-actions">
+                <div class="spacer"></div>
+                <button class="dialog-btn">Kapat</button>
+                <button class="dialog-btn ml-2">Kaydet</button>
+            </div>
+        </div>   
+    </div>
+    <script>
+        function handleOpenModal(event){
+            var dialog = document.getElementById("dialog");
+            //dialog.parentElement.classList.add("parent-bg");
+            dialog.classList.toggle('dialog-active');
+            //var dialog = document.querySelector('.dialog') 
+        }
+        function modalCloseListener(event){
+            var className = event.target.className; 
+            if(className.indexOf("dialog") >= 0 ) {return;}
+            else {
+                var modal = document.getElementById("dialog");
+                if(event.target.id !== "openDialog"){modal.classList.remove("dialog-active")}
+            }
+           
+        }
+        document.addEventListener("click",modalCloseListener)
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="C:/Users/dogankoc/Desktop/MyWebComponents/selectable-collapse-menu/selectable-collapse-menu.js"></script>
+</head>
+<body>
+    <div id="selectable-collapse-example">
+        <script>
+                var List = new SelectableCollapseList({
+                    id:"selectableCollapselistExample",
+                    parentId:"selectable-collapse-example",
+                    parentItemsProps:{
+                        url:'https://localhost/Synergy/Home/GetItemsForSelectableCollapseList',
+                        displayColName : "DN"
+    
+                    },
+                    subItemsProps:{
+                        url:'https://localhost/Synergy/Home/GetSubItemForSelectableCollapseList',
+                        method:'POST',
+                        async:true,
+                        displayColName : "UserName,JT",
+                        compareParentItemColname : "DI"
+                    },
+    
+                }).Create()
+        </script>
+    </div>
+</body>
+</html>

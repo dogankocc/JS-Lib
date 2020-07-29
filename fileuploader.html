@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="parent"></div>
+
+<script>
+    function Files() {
+        this.fileItems = {}
+    }
+    FileList.prototype.files = new Files()
+
+    function fileUpload (options){
+        var self = this
+
+        self.newUID = function() { 
+                var d = new Date().getTime();
+                var d2 = (performance && performance.now && (performance.now()*1000)) || 0;
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16;
+                    if(d > 0){
+                        r = (d + r)%16 | 0;
+                        d = Math.floor(d/16);
+                    } else {
+                        r = (d2 + r)%16 | 0;
+                        d2 = Math.floor(d2/16);
+                    }
+                    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                });
+            }
+            self.HTML = "";
+            self.fileUploadTableBodyID = self.newUID()
+            self.fileInputID = self.newUID()
+            self.fileUploadBtnID = self.newUID()
+
+            self.el = document.getElementById(options.el)
+            self.fileList = new Array()
+            self.fileNames = new Array()
+            self.filesOBJ = new Files()
+
+            self.removeFile = function(){
+                var fileID = this.dataset.fileid
+                console.log(fileID)
+                var temp = new Array()
+                var temp2 = new Array()
+                for(var x=0;x<self.fileList.length;x++){
+                    if(self.fileList[x].id !== fileID){
+                        temp.push(self.fileList[x])
+                        temp2.push(self.fileList[x].name)
+                    }else{
+                        delete self.filesOBJ.fileItems[fileID]
+                    }
+                }
+                self.fileList = temp
+                self.fileNames = temp2
+                document.getElementById(fileID).remove()
+            }
+    
+            self.readFile = function(e,file,reader){
+                var removeFileBtnID = self.newUID()
+                var fileID = self.newUID()
+                self.fileList.push({id:fileID,name:file.name, src:e.target.result}) ;
+                self.filesOBJ.fileItems[fileID] = file
+                self.filesOBJ.fileItems[fileID]["id"] = fileID
+
+                var tr = document.createElement("tr")
+                tr.setAttribute("id",fileID)
+                self.HTML += '<tr id='+fileID+'>'+
+                        '<td><img width="46" height="46" src="'+e.target.result+'"/></td>'+
+                        '<td>' + file.name + '</td>'+
+                        '<td><button id="'+removeFileBtnID+'" data-fileid="'+fileID+'">Sil</button></td>'+
+                        '</tr>';
+                tr.innerHTML = self.HTML
+                document.getElementById(self.fileUploadTableBodyID).appendChild(tr)
+                document.getElementById(removeFileBtnID).addEventListener("click",self.removeFile)
+                self.HTML = "";
+                reader.onload = ()=> {changeStatus('Yüklendi')};
+                reader.onloadend = () => loaded;
+            }
+
+            self.uploadFile = function(file, callBack){
+                if(self.fileNames.indexOf(file.name) > -1){
+                    return
+                }
+                self.fileNames.push(file.name)
+                var reader = new FileReader();
+                reader.onabort = () => changeStatus('Start Loading');
+                reader.onloadstart =   () => changeStatus('Start Loading');
+                reader.onprogress = setProgress;
+                reader.onload = function (e) {
+                    self.readFile(e,file,reader)
+                };
+                reader.readAsDataURL(file);
+            }
+
+            self.upload = function(event){
+                const files =  document.getElementById(self.fileInputID).files;              
+                for (var i = 0; i < files.length; ++i) {
+                    var file = files[i]
+                    self.uploadFile(file)
+                }
+            }
+            self.getFiles = function () {
+                return self.filesOBJ.fileItems
+            }
+          
+            var parent = document.createElement("div")
+            var fileUploadHTML='<input type="file" id="'+self.fileInputID+'" accept="image/*" multiple>'+
+                                    '<button id="'+self.fileUploadBtnID+'">Yükle</button>'+
+                                    '<progress value="0" max="100" id="progress-bar"></progress>'+
+                                    '<div id="status"></div>'+
+                                    '<table>'+
+                                        '<thead>'+
+                                            '<tr>'+
+                                                '<th>Dosya</th>'+
+                                                '<th>Ad</th>'+
+                                                '<th>Url</th>'+
+                                            '</tr>'+
+                                        '</thead>'+
+                                        '<tbody id="'+self.fileUploadTableBodyID+'">'+
+                                        '</tbody>'+
+                                    '</table>';
+                parent.innerHTML = fileUploadHTML 
+                self.el.appendChild(parent)        
+                document.getElementById(self.fileUploadBtnID).addEventListener("click",self.upload)
+
+            const setProgress = function(e) {
+            const fr = e.target;
+            const loadingPercentage =  100 * e.loaded / e.total;
+            document.getElementById('progress-bar').value = loadingPercentage;
+            }
+        
+            const changeStatus = function(status)  {
+            document.getElementById('status').innerHTML = status
+            }
+        
+            const loaded = function(e) {
+            changeStatus('Load ended!');
+            const fr = e.target
+            var result = fr.result;
+
+            // Here we can send the result to a server for example
+            }
+        
+            const errorHandler = (e) => {
+            changeStatus("Error: " + e.target.error.name)
+            }
+    
+
+        }
+
+    </script>
+
+<script>
+    new fileUpload({
+        el:"parent"
+    })
+</script>
+</body>
+</html>

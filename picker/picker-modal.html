@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="C:\\Users\\dogankoc\\Desktop\\MyWebComponents\\picker\\modal.css"/>
+    <link rel="stylesheet" type="text/css" href="C:\\Users\\dogankoc\\Desktop\\MyWebComponents\\picker\\text-field.css"/>
+    <script type="text/javascript" src="C:/Users/dogankoc/Desktop/MyWebComponents/picker/text-field.js"></script>
+</head>
+<body>
+
+    <div id="text-input-container">
+        <script>
+            function getSelectedItemCol(Id){ alert(Id)}//this func internal you should use this
+            function handleChange(event){
+                //  alert(event.target.value);
+                }
+             var TextField_ = new TextField({
+                 id:'text-input-1',
+                 parentId:'text-input-container',
+                 label:'Ad Soyad',
+                 onChange:'handleChange',
+                 outlined:true,  
+                 inputProps:{
+                     id:"helloPicker",
+                     className : ""
+                 },
+                 
+                 picker:{
+                    onChangeProps:{
+                        selectedItemColIndex : 1,
+                        displayItemColIndex: 0,
+                     },
+                     columns:[{colName:"Col1",title:"HASTA ADI"},{colName:"Col2",title:"HASTA ID"}],
+                     rows : [
+                            {Col1:"deneme" ,Col2:"deneme2"},{Col1:"deneme" ,Col2:"deneme2"},{Col1:"deneme" ,Col2:"deneme2"},{Col1:"deneme" ,Col2:"deneme2"},{Col1:"deneme" ,Col2:"deneme2"}
+                        ],
+                     menuProps:{
+                         style:""
+                     }
+                 }
+                 //size:'small'
+             }).Create()
+       
+          
+        </script>
+    </div>
+
+
+   
+
+
+
+
+</body>
+
+</html>

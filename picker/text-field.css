@@ -1,0 +1,249 @@
+.MuiFormControl-root{
+    border: 0;
+    margin: 0;
+    display: inline-flex;
+    padding: 0;
+    z-index: 0;
+    position: relative;
+    min-width: 0;
+    flex-direction: column;
+    vertical-align: top;
+}
+
+.MuiInputLabel-outlined {
+    z-index: 1;
+    transform: translate(14px, 20px) scale(1) ;
+    pointer-events: none;
+}
+.MuiInputLabel-shrink{
+    transform-origin: top left;
+}
+.MuiInputLabel-shrink.MuiInputLabel-outlined{
+    transform: translate(14px,-6px) scale(0.75);
+}
+
+.MuiInputLabel-shrink.MuiInputLabel-underline{
+    transform: translate(0, 1.5px) scale(0.75);
+}
+
+.MuiInputLabel-underline{
+    z-index: 1;
+    transform: translate(0, 20px) scale(1) ;
+    pointer-events: none;
+}
+
+.MuiInputLabel-marginDense {
+    transform: translate(14px, 12px) scale(1);
+}
+
+.MuiInputLabel-animated {
+    transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.MuiInputLabel-formControl {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+
+.MuiInputLabel-root {
+    display: block;
+}
+.MuiFormLabel-root {
+    color: rgba(0, 0, 0, 0.54);
+    padding: 0;
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.00938em;
+}
+.MuiFocused{
+    border-width: 2px !important;
+    border-color:#1976d2 !important;
+
+}
+.MuiFocused-underline{
+    border-bottom: 2px solid #1976d2 !important;
+}
+
+.MuiFocusedText{
+    color:#1976d2 !important;
+}
+.MuiUnderlineInput-input{
+    padding: 6px 0 7px;
+}
+
+.MuiOutlinedInput-root {
+    position: relative;
+    border-radius: 4px;
+}
+
+.MuiInputBase-root {
+    color: rgba(0, 0, 0, 0.87);
+    cursor: text;
+    display: inline-flex;
+    position: relative;
+    font-size: 1rem;
+    box-sizing: border-box;
+    align-items: center;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.1875em;
+    letter-spacing: 0.00938em;
+}
+
+.MuiInput-input{}
+.MuiInput-underline:before{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "\00a0";
+    position: absolute;
+    transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    pointer-events: none;
+}
+.MuiInput-underline:after {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    transform: scaleX(0);
+    transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    border-bottom: 2px solid #1976d2;
+    pointer-events: none;
+}
+
+.MuiOutlinedInput-input {
+    padding: 18.5px 14px;
+}
+
+.MuiInputBase-input {
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    height: 1.1875em;
+    margin: 0;
+    display: block;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+}
+
+.MuiOutlinedInput-inputMarginDense {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+}
+
+.jss607 {
+    width: auto;
+    height: 11px;
+    display: block;
+    padding: 0;
+    font-size: 0.75em;
+    max-width: 0.01px;
+    text-align: left;
+    transition: max-width 50ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    visibility: hidden;
+}
+
+.jss605 {
+    top: -5px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 8px;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.jss548  {
+    width: 100%;
+    margin: 8px;
+}
+
+.jss607 span {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.jss608{
+    max-width: 1000px;
+    transition: max-width 100ms cubic-bezier(0.0, 0, 0.2, 1) 50ms;
+}
+
+.MuiInput-formControl {
+    margin-top: 16px;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border: solid 1px #AFB9CD;
+    border-width: 3px;
+    border-radius: 5px;
+    width: auto;
+    overflow-y: auto;
+    max-height: 300px;
+    background-color:white;
+}
+
+.show-dropdown {
+    display: block !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-list {
+    border-collapse: collapse;
+    width: 100%;
+}
+.menu-list-head{
+
+}
+
+.menu-list-item {
+    cursor: pointer;
+    
+}
+
+.menu-list-item-col {
+    text-align: left;
+    padding: 8px;
+    font-size: 1.1rem;
+}
+.menu-list-item:nth-child(even) {
+    background: #E4E9F3;
+}
+
+.menu-list-item:hover {
+    background: #b0beda;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
